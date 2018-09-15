@@ -25,8 +25,10 @@ var am = new AudioManager({
 });
 ```
 참고로 BASE64 로 음원을 인코딩하는 방법은 아래와 같습니다.
-openssl base64 < sound.mp3 | tr -d '\n' > base64_encoded_binary.txt
 base64_encoded_binary.txt 의 내용을 열어보면 인코딩 된 문자열이 들어가있는것을 확인 할 수 있습니다.
+```bash
+openssl base64 < sound.mp3 | tr -d '\n' > base64_encoded_binary.txt
+```
 
 ### 권한부여
 이 부분이 중요합니다.
