@@ -27,6 +27,11 @@ var am = new AudioManager({
    }
 });
 ```
+혹은
+```js
+var am = new AudioManager();
+```
+
 참고로 BASE64 로 음원을 인코딩하는 방법은 아래와 같습니다.
 base64_encoded_binary.txt 의 내용을 열어보면 인코딩 된 문자열이 들어가있는것을 확인 할 수 있습니다.
 ```bash
@@ -66,6 +71,16 @@ am.play('ring', {
    }
 });
 ```
+혹은
+```js
+am.run('/resource/sound.mp3', { // URL 을 넣어주면 로드해서 재생해주고 ring 같은 key 를 넣어주면 해당 key에 해당하는 음원을 재생해준다
+   playtime: 2000, // 넣어주면 2초후 강제종료
+   start: function (task) { console.log('재생시작:' + task.pid); },
+   progress: function (task, time) { console.log('프로그레스:' + time); },
+   end: function (task) { console.log('재생종료:' + task.pid); },
+   error: function () { }
+});
+```
 
 ### 리소스 이름으로 정지
 인자로 준 리소스 이름에 해당하는 모든 재생이 정지됩니다.
@@ -85,5 +100,16 @@ am.add_url('/resource/sound2.mp3', 'newone', function (err){
    console.log('음원추가 완료');
    console.log(err);
    am.play('newone');
+});
+```
+혹은
+```js
+am.add_url([
+   '/resource/sound1.mp3',
+   '/resource/sound2.mp3',
+   '/resource/sound3.mp3',
+], function (err) {
+   console.log('음원추가 완료');
+   console.log(err); // 에러가 있다면 들어온다
 });
 ```
