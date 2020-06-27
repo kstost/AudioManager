@@ -6,7 +6,7 @@
 웹에서 음원이 재생이 되기 위해서는 일차적으로 유저의 조작으로 인한 재생이 선행되어야합니다.
 본 코드는 이것의 처리를 간편하게 하기 위한 라이브러리입니다.
 
-샘플1 실행: https://codepen.io/cssbaby/pen/oPPvXW 
+샘플1 실행: https://codepen.io/cssbaby/pen/oPPvXW  
 샘플2 실행: https://codepen.io/cssbaby/pen/dyGzgpE
 
 
