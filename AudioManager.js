@@ -113,7 +113,7 @@
       },
       grant_permission: function () {
          //SAFE
-         if (this.audioCtx.state === 'suspended') {
+         if (true || this.audioCtx.state === 'suspended') {
             this.play();
          }
       },
