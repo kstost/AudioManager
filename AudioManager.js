@@ -147,7 +147,7 @@
       //SAFE
       run: function (url, ecb) {
          let pointer = this;
-         if (pointer.audioCtx.state === 'suspended') {
+         if (!this.permission) {
             pointer.grant_permission();
          }
          if (pointer.isLoaded(url)) {
