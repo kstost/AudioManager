@@ -22,8 +22,25 @@
             }
          }
          for (var i = 0; i < ll.length; i++) {
-            ll[i].stop();
+            pointer.tech_stop(ll[i]);
          }
+      },
+      tech_stop: function (source) {
+         let vol = 1;
+         let per = performance.now();
+         // gentle stop
+         let stt = function () {
+            let pn = performance.now();
+            vol -= 0.01 * (pn - per);
+            per = pn;
+            source.gaining_node.gain.value = vol;
+            if (vol > 0) {
+               requestAnimationFrame(stt)
+            } else {
+               source.stop();
+            }
+         }
+         requestAnimationFrame(stt);
       },
       stop_by_pid: function (key_) {
          var pointer = this;
@@ -34,7 +51,7 @@
             }
          }
          for (var i = 0; i < ll.length; i++) {
-            ll[i].stop();
+            pointer.tech_stop(ll[i]);
          }
       },
       add_url: function (url, key, com_cb) {
@@ -124,6 +141,7 @@
             this.permission = true;
          }
          pointer.extract_sound(sound_name, function (ar) {
+            // console.log(ar);
             if (ar.play && pointer.permission) {
                ar.play(ecb);
             }
@@ -229,6 +247,7 @@
                   source.connect(gainNode);
                   gainNode.connect(this.audioCtx.destination);
                   gainNode.gain.value = name === 'grant_key' ? 0 : 1;
+                  source.gaining_node = gainNode;
                   let startTime = this.audioCtx.currentTime;
                   let raf = (function (callback) {
                      return window.requestAnimationFrame ||
