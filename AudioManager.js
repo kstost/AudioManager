@@ -136,6 +136,9 @@
       },
       play: function (sound_name, ecb) {
          var pointer = this;
+         if (pointer.audioCtx.state === 'interrupted') {
+            pointer.audioCtx.resume();
+         }
          if (sound_name === undefined) {
             sound_name = 'grant_key';
             this.permission = true;
